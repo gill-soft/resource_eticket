@@ -1,0 +1,287 @@
+<xs:schema attributeFormDefault="unqualified"
+	elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+	<xs:complexType name="item_type">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute type="xs:string" name="code" use="optional" />
+				<xs:attribute type="xs:string" name="kind" use="optional" />
+				<xs:attribute type="xs:float" name="cost" use="optional" />
+				<xs:attribute type="xs:float" name="vat" use="optional" />
+				<xs:attribute type="xs:float" name="fee" use="optional" />
+				<xs:attribute type="xs:float" name="ticket" use="optional" />
+				<xs:attribute type="xs:float" name="reserved_seat" use="optional" />
+				<xs:attribute type="xs:float" name="commission" use="optional" />
+				<xs:attribute type="xs:float" name="carrier" use="optional" />
+				<xs:attribute type="xs:float" name="reserved_seat_percent"
+					use="optional" />
+				<xs:attribute type="xs:float" name="ticket_percent"
+					use="optional" />
+				<xs:attribute type="xs:float" name="return" use="optional" />
+				<xs:attribute type="xs:float" name="vat_return" use="optional" />
+				<xs:attribute type="xs:float" name="pay_commision" use="optional" />
+				<xs:attribute type="xs:float" name="com_service" use="optional" />
+				<xs:attribute type="xs:float" name="insurance" use="optional" />
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+
+	<!-- mixed="true" -->
+	<xs:complexType name="passport_type">
+		<xs:sequence>
+			<xs:element type="xs:string" name="firstname" />
+			<xs:element type="xs:string" name="lastname" />
+			<xs:element type="xs:string" name="middlename" />
+			<xs:element type="xs:string" name="birthday" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- mixed="true" -->
+	<xs:complexType name="document_type">
+		<xs:sequence>
+			<xs:element type="xs:byte" name="number" />
+			<xs:element type="xs:string" name="type" minOccurs="0" />
+			<xs:element type="xs:string" name="status" minOccurs="0" />
+			<xs:element type="xs:byte" name="count_place" />
+			<xs:element type="xs:string" name="firstname" />
+			<xs:element type="xs:string" name="lastname" />
+			<xs:element type="xs:string" name="middlename" />
+			<xs:element type="xs:string" name="birthday" />
+			<xs:element name="passport" type="passport_type" />
+			<xs:element type="xs:string" name="uid" />
+			<xs:element type="xs:string" name="ordernumber" />
+			<xs:element name="costs" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="item" maxOccurs="unbounded"
+							minOccurs="0" type="item_type" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="detail" minOccurs="0" type="detail_type" />
+			<xs:element name="withholding" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="item" maxOccurs="unbounded"
+							minOccurs="0" type="item_type" />
+					</xs:sequence>
+					<xs:attribute type="xs:string" name="railway" use="optional" />
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute type="xs:float" name="verison" use="optional" />
+	</xs:complexType>
+
+	<xs:complexType name="detail_type">
+		<xs:sequence>
+			<xs:element type="xs:string" name="kind" />
+			<xs:element name="reserve">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element type="xs:string" name="date" />
+						<xs:element type="xs:float" name="cost" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="places" type="places_type" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="seats_type">
+		<xs:simpleContent>
+			<xs:extension base="xs:byte">
+				<xs:attribute type="xs:string" name="side" />
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+
+	<!-- mixed="true" -->
+	<xs:complexType name="places_type">
+		<xs:sequence>
+			<xs:element name="lower" minOccurs="0" type="seats_type" />
+			<xs:element name="top" minOccurs="0" type="seats_type" />
+			<xs:element name="wagon" maxOccurs="unbounded" minOccurs="0"
+				type="wagon_type" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="railway_type">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute type="xs:string" name="code" use="optional" />
+				<xs:attribute type="xs:string" name="name_uk" use="optional" />
+				<xs:attribute type="xs:string" name="name_ru" use="optional" />
+				<xs:attribute type="xs:string" name="name_lt" use="optional" />
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+
+	<xs:complexType name="code_type">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute type="xs:string" name="code" use="optional" />
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+
+	<xs:complexType name="cost_type">
+		<xs:simpleContent>
+			<xs:extension base="xs:float">
+				<xs:attribute type="xs:string" name="currency" />
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+
+	<!-- mixed="true" -->
+	<xs:complexType name="wagon_type">
+		<xs:sequence>
+			<xs:element type="xs:string" name="charline" />
+			<xs:element type="xs:string" name="place_count" />
+			<xs:element type="xs:string" name="number" />
+			<xs:element name="type" type="code_type" />
+			<xs:element type="xs:string" name="subtype" />
+			<xs:element name="country" type="code_type" />
+			<xs:element name="railway" type="code_type" />
+			<xs:element type="xs:string" name="sitting" />
+			<xs:element name="class" type="code_type" />
+			<xs:element name="service">
+				<!-- mixed="true" -->
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="item" maxOccurs="unbounded"
+							minOccurs="0" type="code_type" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="cost" minOccurs="0" type="cost_type" />
+			<xs:element name="costreserve" minOccurs="0" type="cost_type" />
+			<xs:element name="places" type="places_type" />
+			<xs:element type="xs:string" name="allow_bonus" minOccurs="0" />
+		</xs:sequence>
+		<xs:attribute type="xs:string" name="typeAttr" use="optional" />
+		<xs:attribute type="xs:string" name="lower" use="optional" />
+		<xs:attribute type="xs:string" name="top" use="optional" />
+		<xs:attribute type="xs:string" name="side_lower" use="optional" />
+		<xs:attribute type="xs:string" name="side_top" use="optional" />
+		<xs:attribute type="xs:string" name="classAttr" use="optional" />
+	</xs:complexType>
+
+	<!-- mixed="true" -->
+	<xs:complexType name="train_type">
+		<xs:sequence>
+			<xs:element type="xs:string" name="number" />
+			<xs:element type="xs:string" name="model" />
+			<xs:element type="xs:string" name="category" />
+			<xs:element name="station_from" type="code_type" />
+			<xs:element name="station_to" type="code_type" />
+			<xs:element name="class" type="code_type" />
+			<xs:element name="fasted" type="code_type" />
+			<xs:element type="xs:string" name="date" />
+			<xs:element type="xs:string" name="departure_date" />
+			<xs:element type="xs:string" name="arrival_date" />
+			<xs:element type="xs:string" name="travel_time" />
+			<xs:element name="places" type="places_type" />
+			<xs:element name="wagons" type="places_type" />
+		</xs:sequence>
+		<xs:attribute type="xs:string" name="modelAttr" />
+		<xs:attribute type="xs:string" name="classAttr" />
+		<xs:attribute type="xs:string" name="fastedAttr" />
+	</xs:complexType>
+
+	<xs:complexType name="ticket_type">
+		<xs:sequence>
+			<xs:element type="xs:string" name="ordernumber" />
+			<xs:element name="fiscal_info">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element type="xs:string" name="id" />
+						<xs:element type="xs:string" name="rro" />
+						<xs:element type="xs:string" name="server" />
+						<xs:element type="xs:string" name="tin" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="document" maxOccurs="unbounded"
+				minOccurs="0" type="document_type" />
+			<xs:element type="xs:string" name="qr_image" />
+			<xs:element type="xs:string" name="barcode_image" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="order_type">
+		<xs:sequence>
+			<xs:element type="xs:string" name="electronic" />
+			<xs:element type="xs:string" name="paydate" />
+			<xs:element type="xs:string" name="ordernumber" />
+			<xs:element type="xs:string" name="barcode_image" />
+			<xs:element type="xs:string" name="uio" />
+			<xs:element type="xs:string" name="returndate" />
+			<xs:element name="ticket" maxOccurs="unbounded" minOccurs="0"
+				type="ticket_type" />
+			<xs:element name="documents" maxOccurs="unbounded"
+				minOccurs="0" type="ticket_type" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="error_type">
+		<xs:sequence>
+			<xs:element type="xs:string" name="code" />
+			<xs:element type="xs:string" name="text" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- mixed="true" -->
+	<xs:complexType name="locality_type">
+		<xs:sequence>
+			<xs:element type="xs:string" name="code" />
+			<xs:element type="xs:string" name="name" />
+			<xs:element type="xs:string" name="arrival_time" />
+			<xs:element type="xs:string" name="departure_time" />
+			<xs:element type="xs:string" name="distance" />
+			<xs:element type="xs:string" name="days" />
+			<xs:element name="railway" type="railway_type" />
+		</xs:sequence>
+		<xs:attribute type="xs:string" name="codeAttr" use="optional" />
+		<xs:attribute type="xs:string" name="city" use="optional" />
+		<xs:attribute type="xs:string" name="railwayAttr" use="optional" />
+		<xs:attribute type="xs:string" name="name_uk" use="optional" />
+		<xs:attribute type="xs:string" name="name_ru" use="optional" />
+		<xs:attribute type="xs:string" name="name_lt" use="optional" />
+	</xs:complexType>
+
+	<xs:complexType name="country_type">
+		<xs:sequence>
+			<xs:element type="xs:string" name="code" />
+			<xs:element type="xs:string" name="name" />
+			<xs:element name="stations">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="station" maxOccurs="unbounded"
+							minOccurs="0" type="locality_type" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="railways">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="railway" maxOccurs="unbounded"
+							minOccurs="0" type="locality_type" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="cities">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="city" maxOccurs="unbounded"
+							minOccurs="0" type="locality_type" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute type="xs:string" name="codeAttr" use="optional" />
+		<xs:attribute type="xs:string" name="name_uk" use="optional" />
+		<xs:attribute type="xs:string" name="name_ru" use="optional" />
+		<xs:attribute type="xs:string" name="name_lt" use="optional" />
+	</xs:complexType>
+
+</xs:schema>

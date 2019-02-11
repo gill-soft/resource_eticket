@@ -1,0 +1,57 @@
+<xs:schema attributeFormDefault="unqualified"
+	elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:include schemaLocation="types.xsd" />
+	<xs:element name="response">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element type="xs:string" name="xmlsign" />
+				<xs:element type="xs:string" name="datetime" />
+				<xs:element name="transaction">
+					<xs:complexType>
+						<xs:choice maxOccurs="unbounded" minOccurs="0">
+							<xs:element type="xs:string" name="code" />
+							<xs:element type="xs:string" name="text" />
+							<xs:element type="xs:string" name="status" />
+							<xs:element name="station" maxOccurs="unbounded"
+								minOccurs="0" type="locality_type" />
+							<xs:element type="xs:string" name="uio" />
+							<xs:element type="xs:string" name="wait_time" />
+							<xs:element type="xs:string" name="date_from" />
+							<xs:element type="xs:string" name="date_to" />
+							<xs:element type="xs:string" name="electronic" />
+							<xs:element type="xs:string" name="sysdate" />
+							<xs:element name="station_from" type="code_type" />
+							<xs:element name="station_to" type="code_type" />
+							<xs:element name="trains">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="train" maxOccurs="unbounded"
+											minOccurs="0" type="train_type" />
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="train" type="train_type" />
+							<xs:element name="wagon" type="wagon_type" />
+							<xs:element name="date" type="code_type" />
+							<xs:element name="countries">
+								<xs:complexType mixed="true">
+									<xs:sequence>
+										<xs:element name="country" maxOccurs="unbounded"
+											minOccurs="0" type="country_type" />
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="country" maxOccurs="unbounded"
+								minOccurs="0" type="country_type" />
+							<xs:element name="documents" type="ticket_type" />
+							<xs:element name="order" type="order_type" />
+							<xs:element name="document" maxOccurs="unbounded"
+								minOccurs="0" type="document_type" />
+						</xs:choice>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="error" type="error_type" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
