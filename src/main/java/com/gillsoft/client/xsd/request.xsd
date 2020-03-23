@@ -11,7 +11,7 @@
 				<xs:element type="xs:string" name="datetime" />
 				<xs:element name="transaction">
 					<xs:complexType>
-						<xs:choice maxOccurs="unbounded" minOccurs="0">
+						<xs:sequence>
 							<xs:element type="xs:string" name="reserve_id" />
 							<xs:element type="xs:string" name="uid" />
 							<xs:element type="xs:string" name="uio" />
@@ -52,7 +52,7 @@
 							</xs:element>
 							<xs:element name="passport" type="passport_type" />
 							<xs:element type="xs:string" name="fiscal_id" />
-						</xs:choice>
+						</xs:sequence>
 						<xs:attribute type="xs:string" name="type" />
 						<xs:attribute type="xs:string" name="id" />
 					</xs:complexType>

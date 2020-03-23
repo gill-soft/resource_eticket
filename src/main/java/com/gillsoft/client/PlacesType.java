@@ -10,10 +10,10 @@ package com.gillsoft.client;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.XmlValue;
 
 
 /**
@@ -45,19 +45,9 @@ import javax.xml.bind.annotation.XmlValue;
 })
 public class PlacesType {
 
-	@XmlValue
-    protected String value;
     protected SeatsType lower;
     protected SeatsType top;
     protected List<WagonType> wagon;
-
-    public String getValue() {
-		return value;
-	}
-
-	public void setValue(String value) {
-		this.value = value;
-	}
 
 	/**
      * Gets the value of the lower property.

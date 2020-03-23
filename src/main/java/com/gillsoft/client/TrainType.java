@@ -13,7 +13,6 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.XmlValue;
 
 
 /**
@@ -68,8 +67,6 @@ import javax.xml.bind.annotation.XmlValue;
 })
 public class TrainType {
 
-	@XmlValue
-    protected String value;
     @XmlElement(required = true)
     protected String number;
     @XmlElement(required = true)
@@ -102,14 +99,6 @@ public class TrainType {
     protected String classAttr;
     @XmlAttribute(name = "fasted")
     protected String fastedAttr;
-
-    public String getValue() {
-		return value;
-	}
-
-	public void setValue(String value) {
-		this.value = value;
-	}
 
 	/**
      * Gets the value of the number property.

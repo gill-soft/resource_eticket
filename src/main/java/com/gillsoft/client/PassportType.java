@@ -12,7 +12,6 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.XmlValue;
 
 
 /**
@@ -46,8 +45,6 @@ import javax.xml.bind.annotation.XmlValue;
 })
 public class PassportType {
 
-	@XmlValue
-    protected String value;
     @XmlElement(required = true)
     protected String firstname;
     @XmlElement(required = true)
@@ -56,14 +53,6 @@ public class PassportType {
     protected String middlename;
     @XmlElement(required = true)
     protected String birthday;
-
-    public String getValue() {
-		return value;
-	}
-
-	public void setValue(String value) {
-		this.value = value;
-	}
 
 	/**
      * Gets the value of the firstname property.

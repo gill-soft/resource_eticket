@@ -10,12 +10,12 @@ package com.gillsoft.client;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.XmlValue;
 
 
 /**
@@ -85,8 +85,6 @@ import javax.xml.bind.annotation.XmlValue;
 })
 public class WagonType {
 
-	@XmlValue
-    protected String value;
     @XmlElement(required = true)
     protected String charline;
     @XmlElement(name = "place_count", required = true)
@@ -125,14 +123,6 @@ public class WagonType {
     protected String sideTop;
     @XmlAttribute(name = "class")
     protected String classAttr;
-
-    public String getValue() {
-		return value;
-	}
-
-	public void setValue(String value) {
-		this.value = value;
-	}
 
 	/**
      * Gets the value of the charline property.

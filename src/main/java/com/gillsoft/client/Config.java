@@ -1,7 +1,6 @@
 package com.gillsoft.client;
 
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.util.Properties;
 
 import org.springframework.core.io.ClassPathResource;
@@ -25,48 +24,8 @@ public class Config {
 		return properties.getProperty("url");
 	}
 	
-	public static int getPort() {
-		return Integer.valueOf(properties.getProperty("port"));
-	}
-	
-	public static int getSoTimeout() {
-		return Integer.valueOf(properties.getProperty("so.timeout"));
-	}
-	
-	public static int getPoolSize() {
-		return Integer.valueOf(properties.getProperty("pool.size"));
-	}
-	
-	public static String getPrefix() {
-		return properties.getProperty("prefix");
-	}
-	
-	public static String getAgent() {
-		return properties.getProperty("agent");
-	}
-	
-	public static String getFrom() {
-		return properties.getProperty("from");
-	}
-	
-	public static String getTo() {
-		return properties.getProperty("to");
-	}
-	
-	public static String getWorkplace() {
-		return properties.getProperty("workplace");
-	}
-	
-	public static String getMinPrice() {
-		return properties.getProperty("min.price");
-	}
-	
-	public static BigDecimal getConnect() {
-		return new BigDecimal(properties.getProperty("connect"));
-	}
-	
-	public static String getRegularity() {
-		return properties.getProperty("regularity");
+	public static String getMerchantId() {
+		return properties.getProperty("merchant.id");
 	}
 	
 	public static int getRequestTimeout() {

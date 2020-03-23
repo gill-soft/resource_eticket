@@ -8,7 +8,7 @@
 				<xs:element type="xs:string" name="datetime" />
 				<xs:element name="transaction">
 					<xs:complexType>
-						<xs:choice maxOccurs="unbounded" minOccurs="0">
+						<xs:sequence>
 							<xs:element type="xs:string" name="code" />
 							<xs:element type="xs:string" name="text" />
 							<xs:element type="xs:string" name="status" />
@@ -47,7 +47,7 @@
 							<xs:element name="order" type="order_type" />
 							<xs:element name="document" maxOccurs="unbounded"
 								minOccurs="0" type="document_type" />
-						</xs:choice>
+						</xs:sequence>
 					</xs:complexType>
 				</xs:element>
 				<xs:element name="error" type="error_type" />
